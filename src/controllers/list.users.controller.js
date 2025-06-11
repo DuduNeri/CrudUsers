@@ -1,4 +1,4 @@
-import { listUsers } from '../services/list.services.js';
+import { listUsers } from '../services/list.users.services.js';
 
 export async function getAllUsers(req, res) {
   try {

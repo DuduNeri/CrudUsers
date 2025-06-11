@@ -1,4 +1,4 @@
-import { registerUser } from '../services/users.services.js';
+import { registerUser } from '../services/add.user.services.js';
 
 export async function createUser(req, res) {
     const { name, email, password, role } = req.body;

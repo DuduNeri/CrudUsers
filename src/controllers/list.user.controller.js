@@ -1,4 +1,4 @@
-import { getUserById } from '../services/listUser.services.js';
+import { getUserById } from '../services/list.user.services.js';
 
 export async function getUser(req, res){
    const {id} = req.params;

@@ -1,7 +1,7 @@
 import express from 'express';
-import { createUser } from '../controllers/users.controller.js';
-import { getAllUsers } from '../controllers/list.controller.js';
-import { getUser } from '../controllers/listUser.controller.js';
+import { createUser } from '../controllers/add.user.controller.js';
+import { getAllUsers } from '../controllers/list.users.controller.js';
+import { getUser } from '../controllers/list.user.controller.js';
 import { deleteUserController } from '../controllers/delete.user.controller.js';
 import { updateUserController } from '../controllers/update.user.controller.js';
 

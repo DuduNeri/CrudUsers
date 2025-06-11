@@ -5,7 +5,8 @@ export async function updateUserController(req, res) {
         const { id } = req.params;
         const data = req.body;
         const updateUser = await updateUserService(id, data);
-        return res.status(200).send(updateUser);
+        delete updateUser.password;
+        return res.status(200).json({updateUser:"Usuário atualizado com sucesso!"});
     } catch (error) {
         return res.status(400).json({error: 'Erro ao atualizar o usuário'});
     }
