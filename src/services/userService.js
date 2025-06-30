@@ -3,15 +3,15 @@ import bcrypt from 'bcrypt';
 
 export async function updateUserService(id, data) {
     try {
-        const { name, password} = data;
-        
+        const { name, password } = data;
+
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const query = 'UPDATE users SET name = $1, password = $2 WHERE id = $3';
         const values = [name, hashedPassword, id];
         const result = await pool.query(query, values);
-        
-        if(result.rowCount === 0){
+
+        if (result.rowCount === 0) {
             throw new Error('Usuário não encontrado');
         }
         return result.rows[0];
@@ -20,7 +20,7 @@ export async function updateUserService(id, data) {
     }
 }
 
-export async function listUsers(){
+export async function listUsers() {
     try {
         const query = 'SELECT id, name, email, password, role FROM users ';
         const results = await pool.query(query);
@@ -32,29 +32,29 @@ export async function listUsers(){
 }
 
 export async function getUserById(id) {
-  try {
-    const query = 'SELECT id, name, email, role FROM users WHERE id = $1';
-    const result = await pool.query(query, [id]); 
+    try {
+        const query = 'SELECT id, name, email, role FROM users WHERE id = $1';
+        const result = await pool.query(query, [id]);
 
-    if (result.rows.length === 0) {
-      return null; 
+        if (result.rows.length === 0) {
+            return null;
+        }
+
+        return result.rows[0];
+    } catch (error) {
+        console.error('Erro no serviço ao buscar usuário por ID:', error);
+        throw error;
     }
-
-    return result.rows[0];
-  } catch (error) {
-    console.error('Erro no serviço ao buscar usuário por ID:', error);
-    throw error; 
-  }
 }
 
 export async function deleteUser(id) {
     try {
         const query = 'DELETE FROM users WHERE id = $1';
         const result = await pool.query(query, [id]);
-        if(result.rowCount === 0){
-         return null;
+        if (result.rowCount === 0) {
+            return null;
         }
-        return {message: 'Usúario deletado com sucesso!'}
+        return { message: 'Usúario deletado com sucesso!' }
     } catch (error) {
         console.log('Erro ao deletar usuário', error);
         throw error;
